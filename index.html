@@ -222,6 +222,8 @@
     </div>
 
     <script>
+        const REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
+
         // Initialize users in localStorage if not exists
         if (!localStorage.getItem('anicade_users')) {
             localStorage.setItem('anicade_users', JSON.stringify({
@@ -286,12 +288,10 @@
                 const users = JSON.parse(localStorage.getItem('anicade_users'));
                 
                 if (users[username] && users[username] === password) {
-                    // Store current logged in user
                     localStorage.setItem('anicade_current_user', username);
                     successMessage.textContent = 'Login successful! Redirecting...';
                     setTimeout(() => {
-                        // Redirect to the main ANICADE tech site
-                        window.location.href = 'https://tresforwrld.github.io/ANICADEtech.net/#';
+                        window.location.href = REDIRECT_URL;
                     }, 1500);
                 } else {
                     message.textContent = 'Invalid username or password';
@@ -321,12 +321,12 @@
                 users[username] = password;
                 localStorage.setItem('anicade_users', JSON.stringify(users));
                 
-                successMessage.textContent = 'Account created successfully! You can now login.';
-                
-                // Switch to login mode after successful signup
+                successMessage.textContent = 'Account created! Redirecting...';
+                localStorage.setItem('anicade_current_user', username);
+
                 setTimeout(() => {
-                    if (!isLoginMode) toggleMode();
-                }, 2000);
+                    window.location.href = REDIRECT_URL;
+                }, 1500);
             }
         }
 
@@ -360,7 +360,6 @@
             }
         });
 
-        // Auto-fill demo credentials for quick testing (optional)
         window.onload = function() {
             console.log('ANICADE tech login ready! Demo credentials: demo/password123');
         }
