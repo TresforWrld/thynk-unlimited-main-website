@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THYNK UNLIMITED | Login</title>
+    <title>ANICADE tech | Login</title>
     <style>
         * {
             margin: 0;
@@ -159,6 +159,7 @@
             text-decoration: none;
             font-size: 0.9em;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .links a:hover {
@@ -166,13 +167,18 @@
             text-shadow: 0 0 10px #00BFFF;
         }
 
-        .links a:last-child {
-            color: #C6A85C;
+        .message {
+            color: #ff4d4d;
+            font-size: 0.9em;
+            min-height: 20px;
+            text-align: center;
         }
 
-        .links a:last-child:hover {
-            color: #00BFFF;
-            text-shadow: 0 0 10px #00BFFF;
+        .success-message {
+            color: lawngreen;
+            font-size: 0.9em;
+            min-height: 20px;
+            text-align: center;
         }
 
         @media (max-width: 500px) {
@@ -192,22 +198,163 @@
         <i></i>
         <i></i>
         <i></i>
-        <div class="login">
-            <h2>Login</h2>
+        <div class="login" id="loginContainer">
+            <h2 id="formTitle">Login</h2>
+            <div class="message" id="message"></div>
             <div class="inputBx">
-                <input type="text" placeholder="Username">
+                <input type="text" id="username" placeholder="Username">
             </div>
             <div class="inputBx">
-                <input type="password" placeholder="Password">
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <div class="inputBx" id="confirmPasswordContainer" style="display: none;">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password">
             </div>
             <div class="inputBx">
-                <input type="submit" value="Sign in">
+                <input type="submit" value="Sign In" id="actionButton" onclick="handleAuth()">
             </div>
             <div class="links">
-                <a href="#">Forgot Password</a>
-                <a href="#">Signup</a>
+                <a href="#" id="forgotLink" onclick="forgotPassword()">Forgot Password</a>
+                <a href="#" id="toggleLink" onclick="toggleMode()">Signup</a>
             </div>
+            <div class="success-message" id="successMessage"></div>
         </div>
     </div>
+
+    <script>
+        // Initialize users in localStorage if not exists
+        if (!localStorage.getItem('users')) {
+            localStorage.setItem('users', JSON.stringify({
+                'demo': 'password123',
+                'admin': 'admin123',
+                'user': 'user123'
+            }));
+        }
+
+        let isLoginMode = true;
+
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            const formTitle = document.getElementById('formTitle');
+            const actionButton = document.getElementById('actionButton');
+            const toggleLink = document.getElementById('toggleLink');
+            const confirmPasswordContainer = document.getElementById('confirmPasswordContainer');
+            const message = document.getElementById('message');
+            const forgotLink = document.getElementById('forgotLink');
+
+            if (isLoginMode) {
+                formTitle.textContent = 'Login';
+                actionButton.value = 'Sign In';
+                toggleLink.textContent = 'Signup';
+                confirmPasswordContainer.style.display = 'none';
+                forgotLink.style.display = 'block';
+                message.textContent = '';
+            } else {
+                formTitle.textContent = 'Sign Up';
+                actionButton.value = 'Create Account';
+                toggleLink.textContent = 'Login';
+                confirmPasswordContainer.style.display = 'block';
+                forgotLink.style.display = 'none';
+                message.textContent = '';
+            }
+            
+            // Clear inputs
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('successMessage').textContent = '';
+        }
+
+        function handleAuth() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const message = document.getElementById('message');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Clear previous messages
+            message.textContent = '';
+            successMessage.textContent = '';
+
+            if (!username || !password) {
+                message.textContent = 'Please fill in all fields';
+                return;
+            }
+
+            if (isLoginMode) {
+                // Login logic
+                const users = JSON.parse(localStorage.getItem('users'));
+                
+                if (users[username] && users[username] === password) {
+                    successMessage.textContent = 'Login successful! Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html'; // You can change this to your main page
+                    }, 1500);
+                } else {
+                    message.textContent = 'Invalid username or password';
+                }
+            } else {
+                // Signup logic
+                const confirmPassword = document.getElementById('confirmPassword').value.trim();
+                
+                if (password !== confirmPassword) {
+                    message.textContent = 'Passwords do not match';
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    message.textContent = 'Password must be at least 6 characters';
+                    return;
+                }
+                
+                const users = JSON.parse(localStorage.getItem('users'));
+                
+                if (users[username]) {
+                    message.textContent = 'Username already exists';
+                    return;
+                }
+                
+                // Add new user
+                users[username] = password;
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                successMessage.textContent = 'Account created successfully! You can now login.';
+                
+                // Switch to login mode after successful signup
+                setTimeout(() => {
+                    if (!isLoginMode) toggleMode();
+                }, 2000);
+            }
+        }
+
+        function forgotPassword() {
+            const username = document.getElementById('username').value.trim();
+            const message = document.getElementById('message');
+            
+            if (!username) {
+                message.textContent = 'Please enter your username';
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users'));
+            
+            if (users[username]) {
+                message.style.color = 'lawngreen';
+                message.textContent = `Your password is: ${users[username]}`;
+                setTimeout(() => {
+                    message.style.color = '#ff4d4d';
+                    message.textContent = '';
+                }, 5000);
+            } else {
+                message.textContent = 'Username not found';
+            }
+        }
+
+        // Handle Enter key press
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleAuth();
+            }
+        });
+    </script>
 </body>
 </html>
