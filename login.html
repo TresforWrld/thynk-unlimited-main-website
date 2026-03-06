@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANICADE tech | Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0B1C2D;
+            overflow: hidden;
+        }
+
+        .ring {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring i {
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            transition: 0.5s;
+        }
+
+        .ring i:nth-child(1) {
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            animation: animate 6s linear infinite;
+        }
+
+        .ring:hover i:nth-child(1) {
+            border: 6px solid lawngreen;
+            filter: drop-shadow(0 0 20px lawngreen);
+        }
+
+        .ring i:nth-child(2) {
+            border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+            animation: animate 4s linear infinite;
+        }
+
+        .ring:hover i:nth-child(2) {
+            border: 6px solid red;
+            filter: drop-shadow(0 0 20px red);
+        }
+
+        .ring i:nth-child(3) {
+            border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+            animation: animate2 10s linear infinite;
+        }
+
+        .ring:hover i:nth-child(3) {
+            border: 6px solid #C6A85C;
+            filter: drop-shadow(0 0 20px #C6A85C);
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes animate2 {
+            0% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .login {
+            position: absolute;
+            width: 300px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .login h2 {
+            font-size: 2em;
+            color: #C6A85C;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(198, 168, 92, 0.5);
+        }
+
+        .inputBx {
+            width: 100%;
+        }
+
+        .inputBx input {
+            width: 100%;
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid #1F2E3D;
+            border-radius: 40px;
+            font-size: 1em;
+            color: #F5F7FA;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .inputBx input:focus {
+            border-color: #00BFFF;
+            box-shadow: 0 0 20px #00BFFF;
+        }
+
+        .inputBx input::placeholder {
+            color: #94A3B8;
+        }
+
+        .inputBx input[type="submit"] {
+            background: #00BFFF;
+            border: none;
+            color: #0B1C2D;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+            transition: 0.3s;
+        }
+
+        .inputBx input[type="submit"]:hover {
+            background: #C6A85C;
+            box-shadow: 0 0 30px #C6A85C;
+        }
+
+        .links {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin-top: 10px;
+        }
+
+        .links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .links a:hover {
+            color: #00BFFF;
+            text-shadow: 0 0 10px #00BFFF;
+        }
+
+        .message {
+            color: #ff4d4d;
+            font-size: 0.9em;
+            min-height: 20px;
+            text-align: center;
+        }
+
+        .success-message {
+            color: lawngreen;
+            font-size: 0.9em;
+            min-height: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            .ring {
+                width: 350px;
+                height: 350px;
+            }
+
+            .login {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ring">
+        <i></i>
+        <i></i>
+        <i></i>
+        <div class="login" id="loginContainer">
+            <h2 id="formTitle">Login</h2>
+            <div class="message" id="message"></div>
+            <div class="inputBx">
+                <input type="text" id="username" placeholder="Username">
+            </div>
+            <div class="inputBx">
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <div class="inputBx" id="confirmPasswordContainer" style="display: none;">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+            </div>
+            <div class="inputBx">
+                <input type="submit" value="Sign In" id="actionButton" onclick="handleAuth()">
+            </div>
+            <div class="links">
+                <a href="#" id="forgotLink" onclick="forgotPassword()">Forgot Password</a>
+                <a href="#" id="toggleLink" onclick="toggleMode()">Signup</a>
+            </div>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        const REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
+
+        // Initialize users in localStorage if not exists
+        if (!localStorage.getItem('anicade_users')) {
+            localStorage.setItem('anicade_users', JSON.stringify({
+                'demo': 'password123',
+                'admin': 'admin123',
+                'anicade': 'tech2026',
+                'guest': 'guest123'
+            }));
+        }
+
+        let isLoginMode = true;
+
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            const formTitle = document.getElementById('formTitle');
+            const actionButton = document.getElementById('actionButton');
+            const toggleLink = document.getElementById('toggleLink');
+            const confirmPasswordContainer = document.getElementById('confirmPasswordContainer');
+            const message = document.getElementById('message');
+            const forgotLink = document.getElementById('forgotLink');
+
+            if (isLoginMode) {
+                formTitle.textContent = 'Login';
+                actionButton.value = 'Sign In';
+                toggleLink.textContent = 'Signup';
+                confirmPasswordContainer.style.display = 'none';
+                forgotLink.style.display = 'block';
+                message.textContent = '';
+            } else {
+                formTitle.textContent = 'Sign Up';
+                actionButton.value = 'Create Account';
+                toggleLink.textContent = 'Login';
+                confirmPasswordContainer.style.display = 'block';
+                forgotLink.style.display = 'none';
+                message.textContent = '';
+            }
+
+            // Clear inputs
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('successMessage').textContent = '';
+        }
+
+        function handleAuth() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const message = document.getElementById('message');
+            const successMessage = document.getElementById('successMessage');
+
+            // Clear previous messages
+            message.textContent = '';
+            successMessage.textContent = '';
+
+            if (!username || !password) {
+                message.textContent = 'Please fill in all fields';
+                return;
+            }
+
+            if (isLoginMode) {
+                // Login logic
+                const users = JSON.parse(localStorage.getItem('anicade_users'));
+
+                if (users[username] && users[username] === password) {
+                    localStorage.setItem('anicade_current_user', username);
+                    successMessage.textContent = 'Login successful! Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = REDIRECT_URL;
+                    }, 1500);
+                } else {
+                    message.textContent = 'Invalid username or password';
+                }
+            } else {
+                // Signup logic
+                const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+                if (password !== confirmPassword) {
+                    message.textContent = 'Passwords do not match';
+                    return;
+                }
+
+                if (password.length < 6) {
+                    message.textContent = 'Password must be at least 6 characters';
+                    return;
+                }
+
+                const users = JSON.parse(localStorage.getItem('anicade_users'));
+
+                if (users[username]) {
+                    message.textContent = 'Username already exists';
+                    return;
+                }
+
+                // Add new user
+                users[username] = password;
+                localStorage.setItem('anicade_users', JSON.stringify(users));
+
+                successMessage.textContent = 'Account created! Redirecting...';
+                localStorage.setItem('anicade_current_user', username);
+
+                setTimeout(() => {
+                    window.location.href = REDIRECT_URL;
+                }, 1500);
+            }
+        }
+
+        function forgotPassword() {
+            const username = document.getElementById('username').value.trim();
+            const message = document.getElementById('message');
+
+            if (!username) {
+                message.textContent = 'Please enter your username';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('anicade_users'));
+
+            if (users[username]) {
+                message.style.color = 'lawngreen';
+                message.textContent = `Your password is: ${users[username]}`;
+                setTimeout(() => {
+                    message.style.color = '#ff4d4d';
+                    message.textContent = '';
+                }, 5000);
+            } else {
+                message.textContent = 'Username not found';
+            }
+        }
+
+        // Handle Enter key press
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleAuth();
+            }
+        });
+
+        window.onload = function() {
+            console.log('ANICADE tech login ready! Demo credentials: demo/password123');
+        }
+    </script>
+</body>
+</html>
