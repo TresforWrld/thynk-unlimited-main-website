@@ -6,13 +6,17 @@
     <title>ANICADE TECH | Welcome</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Link Preview -->
     <meta property="og:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
     <meta property="og:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
     <meta property="og:image" content="https://i.imgur.com/RcBmjWM.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://bit.ly/ANICADEtech">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
+    <meta name="twitter:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
     <meta name="twitter:image" content="https://i.imgur.com/RcBmjWM.png">
 
     <style>
@@ -60,19 +64,20 @@
         @keyframes spin1 { to { transform: rotate(360deg); } }
         @keyframes spin2 { to { transform: rotate(-360deg); } }
 
-        /* ===== HERO — FULL SCREEN ===== */
+        /* ===== HERO ===== */
         .hero {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 100px 24px 40px;
-}
-        /* top nav bar */
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 24px 40px;
+        }
+
+        /* ===== TOP NAV ===== */
         .top-bar {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -95,6 +100,7 @@
             letter-spacing: 2px;
             text-shadow: 0 0 16px rgba(198,168,92,0.3);
             text-decoration: none;
+            cursor: pointer;
         }
         .top-logo span { color: var(--accent); }
 
@@ -109,6 +115,7 @@
             padding: 7px 14px;
             border-radius: 6px;
             transition: all 0.2s;
+            cursor: pointer;
         }
         .top-nav-links a:hover { background: rgba(0,191,255,0.1); color: var(--accent); }
         .top-nav-links .cta-nav {
@@ -119,7 +126,7 @@
         }
         .top-nav-links .cta-nav:hover { background: rgba(198,168,92,0.2) !important; color: #fff !important; }
 
-        /* hero content */
+        /* ===== HERO CONTENT ===== */
         .hero-inner { max-width: 860px; }
 
         .hero-logo-wrap { display: flex; justify-content: center; margin-bottom: 30px; animation: fadeUp 1s ease 0.2s both; }
@@ -187,6 +194,7 @@
             text-decoration: none;
             transition: all 0.3s;
             box-shadow: 0 0 30px rgba(198,168,92,0.1);
+            cursor: pointer;
         }
         .btn-primary:hover {
             background: linear-gradient(135deg, rgba(198,168,92,0.3), rgba(0,191,255,0.2));
@@ -212,6 +220,7 @@
             color: var(--text-light);
             text-decoration: none;
             transition: all 0.3s;
+            cursor: pointer;
         }
         .btn-secondary:hover {
             border-color: rgba(0,191,255,0.4);
@@ -247,7 +256,7 @@
         }
         @keyframes bounce { 0%,100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(5px); } }
 
-        /* stats strip */
+        /* ===== STATS STRIP ===== */
         .stats-strip {
             position: relative;
             z-index: 2;
@@ -293,7 +302,6 @@
             margin: 0 auto;
             padding: 100px 24px;
         }
-
         .about-eyebrow {
             font-family: 'Orbitron', sans-serif;
             font-size: 10px;
@@ -305,7 +313,6 @@
             margin-bottom: 16px;
             text-align: center;
         }
-
         .about-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 32px;
@@ -315,14 +322,12 @@
             letter-spacing: -0.5px;
         }
         .about-title span { color: var(--gold); text-shadow: 0 0 24px rgba(198,168,92,0.3); }
-
         .about-divider {
             width: 60px; height: 2px;
             background: linear-gradient(to right, var(--gold), var(--accent));
             margin: 0 auto 50px;
             border-radius: 2px;
         }
-
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -330,7 +335,6 @@
             align-items: center;
             margin-bottom: 70px;
         }
-
         .about-text p {
             font-size: 16px;
             color: var(--text-light);
@@ -347,12 +351,7 @@
             font-size: 15px;
             margin-top: 24px;
         }
-
-        .about-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        .about-badges { display: flex; flex-direction: column; gap: 14px; }
         .about-badge {
             display: flex;
             align-items: center;
@@ -376,11 +375,7 @@
         .badge-content p { font-size: 13px; color: var(--text-light); margin: 0; line-height: 1.4; }
 
         /* pillars */
-        .pillars {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
+        .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .pillar {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -438,6 +433,7 @@
             letter-spacing: 3px;
             margin-bottom: 12px;
             text-shadow: 0 0 16px rgba(198,168,92,0.25);
+            cursor: pointer;
         }
         .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
         .footer-links a {
@@ -447,6 +443,7 @@
             font-weight: 600;
             letter-spacing: 0.5px;
             transition: color 0.2s;
+            cursor: pointer;
         }
         .footer-links a:hover { color: var(--accent); }
         .footer-links .sep { color: rgba(255,255,255,0.12); }
@@ -479,12 +476,12 @@
 
     <!-- TOP NAV -->
     <header class="top-bar">
-        <a href="landing.html" class="top-logo">ANICADE<span>.</span>TECH</a>
+        <a onclick="goProtected('services.html')" class="top-logo">ANICADE<span>.</span>TECH</a>
         <nav class="top-nav-links">
-            <a href="login.html">Services</a>
-            <a href="login.html">Agents</a>
+            <a onclick="goProtected('services.html')">Services</a>
+            <a onclick="goProtected('agents.html')">Agents</a>
             <a href="terms.html">Terms</a>
-            <a href="login.html" class="cta-nav">Login</a>
+            <a onclick="goLogin()" class="cta-nav">Login</a>
         </nav>
     </header>
 
@@ -503,7 +500,7 @@
             </h1>
             <p class="hero-tagline">Professional web development, AI automation, digital marketing and design services — built for businesses that mean business.</p>
             <div class="hero-cta-group">
-                <a href="login.html" class="btn-primary">Get Started →</a>
+                <a onclick="goLogin()" class="btn-primary">Get Started →</a>
                 <a href="#about" class="btn-secondary">Learn More ↓</a>
             </div>
         </div>
@@ -618,28 +615,63 @@
         <h2>Ready to <span>Get Started?</span></h2>
         <p>Join other Zambian businesses and entrepreneurs already working with ANICADE TECH.</p>
         <div class="hero-cta-group">
-            <a href="login.html" class="btn-primary">Create Account →</a>
-            <a href="index.html" class="btn-secondary">View Services</a>
+            <a onclick="goLogin()" class="btn-primary">Create Account →</a>
+            <a onclick="goProtected('login.html')" class="btn-secondary">View Services</a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-        <div class="footer-logo">ANICADE.TECH</div>
+        <div class="footer-logo" onclick="goProtected('services.html')">ANICADE.TECH</div>
         <p>📍 Kabwe, Zambia &nbsp;·&nbsp; 📱 +260 777 083 995 &nbsp;·&nbsp; 📧 anicadetech@gmail.com</p>
         <div class="footer-links">
-            <a href="login.html">Services</a>
+            <a onclick="goProtected('services.html')">Services</a>
             <span class="sep">·</span>
-            <a href="login.html">Become an Agent</a>
+            <a onclick="goProtected('agents.html')">Become an Agent</a>
             <span class="sep">·</span>
             <a href="terms.html">Terms of Service</a>
             <span class="sep">·</span>
             <a href="terms.html#privacy">Privacy Policy</a>
             <span class="sep">·</span>
-            <a href="login.html">Login</a>
+            <a onclick="goLogin()">Login</a>
         </div>
         <p style="margin-top:14px;font-size:11px;opacity:0.3;">© 2026 ANICADE TECH. All rights reserved.</p>
     </footer>
 
+    <script>
+        // ===== LOGIN GUARD =====
+        // Only Terms pages are public. Everything else requires login.
+
+        function isLoggedIn() {
+            return !!localStorage.getItem('anicade_current_user');
+        }
+
+        function goLogin() {
+            window.location.href = 'login.html';
+        }
+
+        function goProtected(page) {
+            if (isLoggedIn()) {
+                window.location.href = page;
+            } else {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // On page load — this page (index.html) is the public landing page,
+        // so we do NOT redirect here. It's the entry point before login.
+        // But if already logged in, "Get Started" should go straight to services.
+        window.addEventListener('DOMContentLoaded', function () {
+            if (isLoggedIn()) {
+                // Swap "Get Started" to go directly to services if already logged in
+                document.querySelectorAll('[onclick="goLogin()"]').forEach(function(el) {
+                    if (el.textContent.includes('Get Started') || el.textContent.includes('Create Account')) {
+                        el.setAttribute('onclick', "goProtected('services.html')");
+                        el.textContent = el.textContent.replace('Get Started →', 'Go to Services →').replace('Create Account →', 'Go to Services →');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
