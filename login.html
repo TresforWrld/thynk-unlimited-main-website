@@ -264,7 +264,13 @@
     </div>
 
     <script>
-        const REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
+        const DEFAULT_REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
+
+        function getRedirectURL() {
+            const pending = localStorage.getItem('anicade_login_redirect');
+            if (pending) { localStorage.removeItem('anicade_login_redirect'); return pending; }
+            return DEFAULT_REDIRECT_URL;
+        }
 
         if (!localStorage.getItem('anicade_users')) {
             localStorage.setItem('anicade_users', JSON.stringify({
@@ -324,7 +330,7 @@
                 if (users[username] && users[username] === password) {
                     localStorage.setItem('anicade_current_user', username);
                     successMessage.textContent = 'Login successful! Redirecting...';
-                    setTimeout(() => { window.location.href = REDIRECT_URL; }, 1500);
+                    setTimeout(() => { window.location.href = getRedirectURL(); }, 1500);
                 } else {
                     message.textContent = 'Invalid username or password';
                 }
@@ -340,7 +346,7 @@
                 localStorage.setItem('anicade_users', JSON.stringify(users));
                 localStorage.setItem('anicade_current_user', username);
                 successMessage.textContent = 'Account created! Redirecting...';
-                setTimeout(() => { window.location.href = REDIRECT_URL; }, 1500);
+                setTimeout(() => { window.location.href = getRedirectURL(); }, 1500);
             }
         }
 
