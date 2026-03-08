@@ -9,7 +9,7 @@
     <!-- Open Graph / Link Preview -->
     <meta property="og:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
     <meta property="og:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
-    <meta property="og:image" content="https://i.imgur.com/RcBmjWM.png">
+    <meta property="og:image" content="https://tresforwrld.github.io/ANICADEtech.net/logo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://bit.ly/ANICADEtech">
@@ -17,7 +17,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
     <meta name="twitter:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
-    <meta name="twitter:image" content="https://i.imgur.com/RcBmjWM.png">
+    <meta name="twitter:image" content="https://tresforwrld.github.io/ANICADEtech.net/logo.png">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -474,12 +474,12 @@
         <div class="ring-el"></div>
     </div>
 
-    <!-- TOP NAV -->
+    <!-- TOP NAV — all links → login.html -->
     <header class="top-bar">
-        <a onclick="goProtected('services.html')" class="top-logo">ANICADE<span>.</span>TECH</a>
+        <a onclick="goLogin()" class="top-logo">ANICADE<span>.</span>TECH</a>
         <nav class="top-nav-links">
-            <a onclick="goProtected('services.html')">Services</a>
-            <a onclick="goProtected('login.html')">Agents</a>
+            <a onclick="goLogin()">Services</a>
+            <a onclick="goLogin()">Agents</a>
             <a href="terms.html">Terms</a>
             <a onclick="goLogin()" class="cta-nav">Login</a>
         </nav>
@@ -500,7 +500,7 @@
             </h1>
             <p class="hero-tagline">Professional web development, AI automation, digital marketing and design services — built for businesses that mean business.</p>
             <div class="hero-cta-group">
-                <a onclick="goLogin()" class="btn-primary">Get Started →</a>
+                <a onclick="handleGetStarted()" class="btn-primary" id="mainCta">Get Started →</a>
                 <a href="#about" class="btn-secondary">Learn More ↓</a>
             </div>
         </div>
@@ -615,19 +615,19 @@
         <h2>Ready to <span>Get Started?</span></h2>
         <p>Join other Zambian businesses and entrepreneurs already working with ANICADE TECH.</p>
         <div class="hero-cta-group">
-            <a onclick="goLogin()" class="btn-primary">Create Account →</a>
-            <a onclick="goProtected('login.html')" class="btn-secondary">View Services</a>
+            <a onclick="handleGetStarted()" class="btn-primary">Create Account →</a>
+            <a onclick="goLogin()" class="btn-secondary">View Services</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER — all links → login.html except Terms -->
     <footer class="site-footer">
-        <div class="footer-logo" onclick="goProtected('index.html')">ANICADE.TECH</div>
+        <div class="footer-logo" onclick="goLogin()">ANICADE.TECH</div>
         <p>📍 Kabwe, Zambia &nbsp;·&nbsp; 📱 +260 777 083 995 &nbsp;·&nbsp; 📧 anicadetech@gmail.com</p>
         <div class="footer-links">
-            <a onclick="goProtected('login.html')">Services</a>
+            <a onclick="goLogin()">Services</a>
             <span class="sep">·</span>
-            <a onclick="goProtected('login.html')">Become an Agent</a>
+            <a onclick="goLogin()">Become an Agent</a>
             <span class="sep">·</span>
             <a href="terms.html">Terms of Service</a>
             <span class="sep">·</span>
@@ -639,39 +639,26 @@
     </footer>
 
     <script>
-        // ===== LOGIN GUARD =====
-        // Only Terms pages are public. Everything else requires login.
+        const SERVICES_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
 
         function isLoggedIn() {
             return !!localStorage.getItem('anicade_current_user');
         }
 
+        // Every nav/footer/secondary link always goes to login
         function goLogin() {
             window.location.href = 'login.html';
         }
 
-        function goProtected(page) {
+        // ONLY the big "Get Started / Create Account" button is smart:
+        // logged in → go straight to services, not logged in → go to login
+        function handleGetStarted() {
             if (isLoggedIn()) {
-                window.location.href = page;
+                window.location.href = SERVICES_URL;
             } else {
                 window.location.href = 'login.html';
             }
         }
-
-        // On page load — this page (index.html) is the public landing page,
-        // so we do NOT redirect here. It's the entry point before login.
-        // But if already logged in, "Get Started" should go straight to services.
-        window.addEventListener('DOMContentLoaded', function () {
-            if (isLoggedIn()) {
-                // Swap "Get Started" to go directly to services if already logged in
-                document.querySelectorAll('[onclick="goLogin()"]').forEach(function(el) {
-                    if (el.textContent.includes('Get Started') || el.textContent.includes('Create Account')) {
-                        el.setAttribute('onclick', "goProtected('services.html')");
-                        el.textContent = el.textContent.replace('Get Started →', 'Go to Services →').replace('Create Account →', 'Go to Services →');
-                    }
-                });
-            }
-        });
     </script>
 </body>
 </html>
