@@ -1,374 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ANICADE tech | Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ANICADE TECH | Login</title>
+<meta property="og:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
+<meta property="og:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
+<meta property="og:image" content="https://i.imgur.com/RcBmjWM.png">
+<meta property="og:url" content="https://bit.ly/ANICADEtech">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/RcBmjWM.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1C2D;--gold:#C6A85C;--cyan:#00BFFF;--green:#39ff14;--text:#F5F7FA;--muted:#94A3B8;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--red:#ff4d4d}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg)}
+body{display:flex;justify-content:center;align-items:center;font-family:'Rajdhani',sans-serif}
 
-    <!-- Open Graph / Link Preview -->
-    <meta property="og:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
-    <meta property="og:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
-    <meta property="og:image" content="https://i.imgur.com/RcBmjWM.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://bit.ly/ANICADEtech">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ANICADE TECH | Professional Tech Solutions Zambia">
-    <meta name="twitter:description" content="Kabwe's trusted partner for web development, digital marketing, AI automation and design.">
-    <meta name="twitter:image" content="https://i.imgur.com/RcBmjWM.png">
+/* ── RINGS ── */
+.scene{display:flex;justify-content:center;align-items:center;width:100vw;height:100vh}
+.ring-wrap{width:min(500px,92vw);height:min(500px,92vw);position:relative;display:flex;justify-content:center;align-items:center}
+.ring{position:relative;width:100%;height:100%;display:flex;justify-content:center;align-items:center}
+.ring i{position:absolute;inset:0;border:2px solid transparent;transition:.5s}
+.ring i:nth-child(1){border-radius:38% 62% 63% 37%/41% 44% 56% 59%;animation:spin1 6s linear infinite;border-color:rgba(0,191,255,0.18)}
+.ring i:nth-child(2){border-radius:41% 44% 56% 59%/38% 62% 63% 37%;animation:spin1 4s linear infinite;border-color:rgba(198,168,92,0.14)}
+.ring i:nth-child(3){border-radius:41% 44% 56% 59%/38% 62% 63% 37%;animation:spin2 10s linear infinite;border-color:rgba(0,191,255,0.09)}
+.ring:hover i:nth-child(1){border:4px solid var(--cyan);filter:drop-shadow(0 0 16px var(--cyan))}
+.ring:hover i:nth-child(2){border:4px solid var(--gold);filter:drop-shadow(0 0 16px var(--gold))}
+.ring:hover i:nth-child(3){border:4px solid var(--gold);filter:drop-shadow(0 0 16px var(--gold))}
+@keyframes spin1{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes spin2{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+/* ── CARD ── */
+.login{position:absolute;width:min(290px,74vw);display:flex;justify-content:center;align-items:center;flex-direction:column;gap:13px;z-index:1000}
+.login-logo{width:54px;height:54px;border-radius:50%;border:2px solid rgba(198,168,92,0.4);margin-bottom:2px}
+.login h2{font-family:'Orbitron',sans-serif;font-size:clamp(1em,4.5vw,1.4em);color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;text-shadow:0 0 18px rgba(198,168,92,0.4);text-align:center}
+.login-sub{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2.5px;color:var(--muted);text-align:center;text-transform:uppercase}
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+/* ── INPUTS ── */
+.inputBx{width:100%}
+.inputBx input[type=text],.inputBx input[type=password],.inputBx input[type=email]{
+  width:100%;padding:11px 18px;background:rgba(255,255,255,0.04);
+  border:1.5px solid var(--border);border-radius:40px;font-size:clamp(0.8em,3.5vw,0.95em);
+  color:var(--text);outline:none;transition:.3s;font-family:'Rajdhani',sans-serif;font-weight:500
+}
+.inputBx input:focus{border-color:var(--cyan);box-shadow:0 0 18px rgba(0,191,255,0.2);background:rgba(0,191,255,0.04)}
+.inputBx input::placeholder{color:var(--muted)}
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #0B1C2D;
-        }
+/* ── SUBMIT BTN ── */
+.submit-btn{
+  width:100%;padding:12px 18px;background:linear-gradient(135deg,var(--cyan),rgba(0,191,255,0.7));
+  border:none;border-radius:40px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:2px;color:var(--bg);cursor:pointer;transition:.3s;box-shadow:0 0 22px rgba(0,191,255,0.28)
+}
+.submit-btn:hover{background:linear-gradient(135deg,var(--gold),rgba(198,168,92,0.8));box-shadow:0 0 28px rgba(198,168,92,0.35);color:#fff}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
 
-        .scene {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh;
-        }
+/* ── LINKS ── */
+.links{width:100%;display:flex;justify-content:space-between;padding:0 8px}
+.links a{color:var(--muted);text-decoration:none;font-size:clamp(0.72em,3vw,0.85em);transition:.3s;cursor:pointer;font-weight:500}
+.links a:hover{color:var(--cyan);text-shadow:0 0 8px var(--cyan)}
 
-        .ring-wrap {
-            width: min(500px, 92vw);
-            height: min(500px, 92vw);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+/* ── MESSAGES ── */
+.msg{font-size:clamp(0.72em,3vw,0.85em);min-height:16px;text-align:center;font-weight:600;transition:.3s}
+.msg.error{color:var(--red)}
+.msg.success{color:var(--green)}
+.msg.info{color:var(--cyan)}
 
-        .ring {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+/* ── SPINNER ── */
+.spin-wrap{display:none;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:11px;font-family:'Orbitron',sans-serif;letter-spacing:1.5px}
+.spin-wrap.show{display:flex}
+.spinner{width:16px;height:16px;border:2px solid rgba(0,191,255,0.15);border-top-color:var(--cyan);border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
 
-        .ring i {
-            position: absolute;
-            inset: 0;
-            border: 2px solid transparent;
-            transition: 0.5s;
-        }
+/* ── FOOTER ── */
+.footer-bar{position:fixed;bottom:14px;left:0;right:0;text-align:center;z-index:9999;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.footer-bar a{color:rgba(148,163,184,0.5);font-size:12px;text-decoration:none;font-weight:600;letter-spacing:.5px}
+.footer-bar a:hover{color:var(--cyan)}
+.footer-bar .sep{color:rgba(255,255,255,0.15);font-size:12px}
 
-        .ring i:nth-child(1) {
-            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-            animation: animate 6s linear infinite;
-        }
-
-        .ring:hover i:nth-child(1) {
-            border: 6px solid lawngreen;
-            filter: drop-shadow(0 0 20px lawngreen);
-        }
-
-        .ring i:nth-child(2) {
-            border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
-            animation: animate 4s linear infinite;
-        }
-
-        .ring:hover i:nth-child(2) {
-            border: 6px solid red;
-            filter: drop-shadow(0 0 20px red);
-        }
-
-        .ring i:nth-child(3) {
-            border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
-            animation: animate2 10s linear infinite;
-        }
-
-        .ring:hover i:nth-child(3) {
-            border: 6px solid #C6A85C;
-            filter: drop-shadow(0 0 20px #C6A85C);
-        }
-
-        @keyframes animate {
-            0%   { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes animate2 {
-            0%   { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .login {
-            position: absolute;
-            width: min(300px, 76vw);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 16px;
-            z-index: 1000;
-        }
-
-        .login h2 {
-            font-size: clamp(1.2em, 5vw, 2em);
-            color: #C6A85C;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 600;
-            text-shadow: 0 0 10px rgba(198, 168, 92, 0.5);
-        }
-
-        .inputBx { width: 100%; }
-
-        .inputBx input {
-            width: 100%;
-            padding: 11px 18px;
-            background: transparent;
-            border: 2px solid #1F2E3D;
-            border-radius: 40px;
-            font-size: clamp(0.8em, 3.5vw, 1em);
-            color: #F5F7FA;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .inputBx input:focus {
-            border-color: #00BFFF;
-            box-shadow: 0 0 20px #00BFFF;
-        }
-
-        .inputBx input::placeholder { color: #94A3B8; }
-
-        .inputBx input[type="submit"] {
-            background: #00BFFF;
-            border: none;
-            color: #0B1C2D;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
-            transition: 0.3s;
-        }
-
-        .inputBx input[type="submit"]:hover {
-            background: #C6A85C;
-            box-shadow: 0 0 30px #C6A85C;
-        }
-
-        .links {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 12px;
-        }
-
-        .links a {
-            color: #94A3B8;
-            text-decoration: none;
-            font-size: clamp(0.75em, 3vw, 0.9em);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .links a:hover {
-            color: #00BFFF;
-            text-shadow: 0 0 10px #00BFFF;
-        }
-
-        .message {
-            color: #ff4d4d;
-            font-size: clamp(0.75em, 3vw, 0.9em);
-            min-height: 18px;
-            text-align: center;
-        }
-
-        .success-message {
-            color: lawngreen;
-            font-size: clamp(0.75em, 3vw, 0.9em);
-            min-height: 18px;
-            text-align: center;
-        }
-
-        .footer-bar {
-            position: fixed;
-            bottom: 14px;
-            left: 0; right: 0;
-            text-align: center;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-        .footer-bar a {
-            color: rgba(148,163,184,0.5);
-            font-size: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .footer-bar a:hover { color: #00BFFF; }
-        .footer-bar .sep { color: rgba(255,255,255,0.15); font-size: 12px; }
-    </style>
+/* ── DIVIDER ── */
+.or-divider{display:flex;align-items:center;gap:10px;width:100%;opacity:.4}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.or-divider span{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2px;color:var(--muted);white-space:nowrap}
+</style>
 </head>
 <body>
 
-    <div class="scene">
-        <div class="ring-wrap">
-            <div class="ring">
-                <i></i>
-                <i></i>
-                <i></i>
-                <div class="login" id="loginContainer">
-                    <h2 id="formTitle">Login</h2>
-                    <div class="message" id="message"></div>
-                    <div class="inputBx">
-                        <input type="text" id="username" placeholder="Username">
-                    </div>
-                    <div class="inputBx">
-                        <input type="password" id="password" placeholder="Password">
-                    </div>
-                    <div class="inputBx" id="confirmPasswordContainer" style="display: none;">
-                        <input type="password" id="confirmPassword" placeholder="Confirm Password">
-                    </div>
-                    <div class="inputBx">
-                        <input type="submit" value="Sign In" id="actionButton" onclick="handleAuth()">
-                    </div>
-                    <div class="links">
-                        <a href="#" id="forgotLink" onclick="forgotPassword()">Forgot Password</a>
-                        <a href="#" id="toggleLink" onclick="toggleMode()">Signup</a>
-                    </div>
-                    <div class="success-message" id="successMessage"></div>
-                </div>
-            </div>
+<div class="scene">
+  <div class="ring-wrap">
+    <div class="ring">
+      <i></i><i></i><i></i>
+      <div class="login" id="loginContainer">
+        <img class="login-logo" src="https://i.imgur.com/RcBmjWM.png" alt="ANICADE TECH">
+        <h2 id="formTitle">Welcome Back</h2>
+        <div class="login-sub">ANICADE TECH</div>
+
+        <div class="spin-wrap" id="dbSpinner"><div class="spinner"></div>CONNECTING</div>
+        <div class="msg" id="message"></div>
+
+        <!-- Username -->
+        <div class="inputBx">
+          <input type="text" id="username" placeholder="Username" autocomplete="username" spellcheck="false">
         </div>
+
+        <!-- Email (signup only) -->
+        <div class="inputBx" id="emailBox" style="display:none">
+          <input type="email" id="emailInput" placeholder="Email address" autocomplete="email">
+        </div>
+
+        <!-- Password -->
+        <div class="inputBx">
+          <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+        </div>
+
+        <!-- Confirm password (signup only) -->
+        <div class="inputBx" id="confirmBox" style="display:none">
+          <input type="password" id="confirmPassword" placeholder="Confirm Password">
+        </div>
+
+        <button class="submit-btn" id="actionBtn" onclick="handleAuth()">SIGN IN</button>
+
+        <div class="links">
+          <a id="forgotLink" onclick="handleForgot()">Forgot Password?</a>
+          <a id="toggleLink" onclick="toggleMode()">Sign Up</a>
+        </div>
+
+        <div class="msg success" id="successMessage"></div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="footer-bar">
-        <a href="terms.html">Terms of Service</a>
-        <span class="sep">·</span>
-        <a href="terms.html#privacy">Privacy Policy</a>
-    </div>
+<div class="footer-bar">
+  <span style="opacity:.5">© 2026 ANICADE TECH</span>
+  <span class="sep">·</span>
+  <a href="terms.html">Terms of Use</a>
+  <span class="sep">·</span>
+  <a href="terms.html#privacy">Privacy Policy</a>
+</div>
 
-    <script>
-        const DEFAULT_REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
+<script>
+/* ══════════════════════════════════════════
+   ANICADE TECH — Login / Signup
+   DB: JSONBin (users bin)
+   ══════════════════════════════════════════ */
 
-        function getRedirectURL() {
-            const pending = localStorage.getItem('anicade_login_redirect');
-            if (pending) { localStorage.removeItem('anicade_login_redirect'); return pending; }
-            return DEFAULT_REDIRECT_URL;
-        }
+const USERS_BIN_ID = '69b14c5bc3097a1dd5173665';
+const API_KEY      = '$2a$10$VJXQzwtVgNhMTIJiiQvpy.hG7XaRD0.H42NyZhKzeLRungeekMmpO';
+const USERS_URL    = `https://api.jsonbin.io/v3/b/${USERS_BIN_ID}`;
+const REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
+const LOCAL_CACHE  = 'anicade_users_cache';
 
-        if (!localStorage.getItem('anicade_users')) {
-            localStorage.setItem('anicade_users', JSON.stringify({
-                'demo': 'password123',
-                'admin': 'admin123',
-                'anicade': 'tech2026',
-                'guest': 'guest123'
-            }));
-        }
+let _users = [];   // loaded from DB
+let _dbReady = false;
+let isLoginMode = true;
 
-        let isLoginMode = true;
+/* ── simple hash (not crypto — just obfuscation for a static site) ── */
+function hashPw(str){
+  let h=5381;
+  for(let i=0;i<str.length;i++){h=((h<<5)+h)^str.charCodeAt(i);h|=0;}
+  return(h>>>0).toString(16);
+}
 
-        function toggleMode() {
-            isLoginMode = !isLoginMode;
-            const formTitle = document.getElementById('formTitle');
-            const actionButton = document.getElementById('actionButton');
-            const toggleLink = document.getElementById('toggleLink');
-            const confirmPasswordContainer = document.getElementById('confirmPasswordContainer');
-            const message = document.getElementById('message');
-            const forgotLink = document.getElementById('forgotLink');
+/* ── DB helpers ── */
+async function dbLoad(){
+  const r=await fetch(USERS_URL+'/latest',{headers:{'X-Master-Key':API_KEY}});
+  const j=await r.json();
+  return j.record?.users||[];
+}
+async function dbSave(users){
+  await fetch(USERS_URL,{method:'PUT',
+    headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},
+    body:JSON.stringify({users})
+  });
+}
 
-            if (isLoginMode) {
-                formTitle.textContent = 'Login';
-                actionButton.value = 'Sign In';
-                toggleLink.textContent = 'Signup';
-                confirmPasswordContainer.style.display = 'none';
-                forgotLink.style.display = 'block';
-                message.textContent = '';
-            } else {
-                formTitle.textContent = 'Sign Up';
-                actionButton.value = 'Create Account';
-                toggleLink.textContent = 'Login';
-                confirmPasswordContainer.style.display = 'block';
-                forgotLink.style.display = 'none';
-                message.textContent = '';
-            }
+/* ── Init ── */
+window.addEventListener('DOMContentLoaded',async()=>{
+  // If already logged in, redirect
+  const session=localStorage.getItem('anicade_session');
+  if(session){try{const s=JSON.parse(session);if(s.username&&s.expires>Date.now()){window.location.href=getRedirect();return;}}catch{}}
 
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('confirmPassword').value = '';
-            document.getElementById('successMessage').textContent = '';
-        }
+  document.getElementById('dbSpinner').classList.add('show');
+  try{
+    _users=await dbLoad();
+    localStorage.setItem(LOCAL_CACHE,JSON.stringify(_users));
+    _dbReady=true;
+  }catch(e){
+    // Fall back to local cache
+    try{_users=JSON.parse(localStorage.getItem(LOCAL_CACHE)||'[]');}catch{_users=[];}
+    _dbReady=false;
+    showMsg('Offline mode — some features limited','info');
+  }
+  document.getElementById('dbSpinner').classList.remove('show');
+  document.getElementById('username').focus();
+});
 
-        function handleAuth() {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const message = document.getElementById('message');
-            const successMessage = document.getElementById('successMessage');
+function getRedirect(){
+  const p=localStorage.getItem('anicade_login_redirect');
+  if(p){localStorage.removeItem('anicade_login_redirect');return p;}
+  return REDIRECT_URL;
+}
 
-            message.textContent = '';
-            successMessage.textContent = '';
+/* ── Mode toggle ── */
+function toggleMode(){
+  isLoginMode=!isLoginMode;
+  const t=document.getElementById('formTitle');
+  const btn=document.getElementById('actionBtn');
+  const tog=document.getElementById('toggleLink');
+  const forgot=document.getElementById('forgotLink');
+  clearMsgs();
+  if(isLoginMode){
+    t.textContent='Welcome Back';btn.textContent='SIGN IN';tog.textContent='Sign Up';
+    forgot.style.display='';
+    document.getElementById('emailBox').style.display='none';
+    document.getElementById('confirmBox').style.display='none';
+  }else{
+    t.textContent='Create Account';btn.textContent='CREATE ACCOUNT';tog.textContent='Sign In';
+    forgot.style.display='none';
+    document.getElementById('emailBox').style.display='';
+    document.getElementById('confirmBox').style.display='';
+  }
+  ['username','emailInput','password','confirmPassword'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+}
 
-            if (!username || !password) { message.textContent = 'Please fill in all fields'; return; }
+/* ── Message helpers ── */
+function showMsg(text,type='error'){
+  const m=document.getElementById('message');m.textContent=text;m.className='msg '+type;
+}
+function clearMsgs(){
+  document.getElementById('message').textContent='';
+  document.getElementById('message').className='msg';
+  document.getElementById('successMessage').textContent='';
+}
 
-            if (isLoginMode) {
-                const users = JSON.parse(localStorage.getItem('anicade_users'));
-                if (users[username] && users[username] === password) {
-                    localStorage.setItem('anicade_current_user', username);
-                    successMessage.textContent = 'Login successful! Redirecting...';
-                    setTimeout(() => { window.location.href = getRedirectURL(); }, 1500);
-                } else {
-                    message.textContent = 'Invalid username or password';
-                }
-            } else {
-                const confirmPassword = document.getElementById('confirmPassword').value.trim();
-                if (password !== confirmPassword) { message.textContent = 'Passwords do not match'; return; }
-                if (password.length < 6) { message.textContent = 'Password must be at least 6 characters'; return; }
+/* ── Auth ── */
+async function handleAuth(){
+  clearMsgs();
+  const username=document.getElementById('username').value.trim().toLowerCase();
+  const password=document.getElementById('password').value;
+  if(!username||!password){showMsg('Please fill in all fields.');return;}
 
-                const users = JSON.parse(localStorage.getItem('anicade_users'));
-                if (users[username]) { message.textContent = 'Username already exists'; return; }
+  const btn=document.getElementById('actionBtn');
+  btn.disabled=true;btn.textContent='PLEASE WAIT…';
 
-                users[username] = password;
-                localStorage.setItem('anicade_users', JSON.stringify(users));
-                localStorage.setItem('anicade_current_user', username);
-                successMessage.textContent = 'Account created! Redirecting...';
-                setTimeout(() => { window.location.href = getRedirectURL(); }, 1500);
-            }
-        }
+  if(isLoginMode){
+    await doLogin(username,password);
+  }else{
+    await doSignup(username,password);
+  }
+  btn.disabled=false;
+  btn.textContent=isLoginMode?'SIGN IN':'CREATE ACCOUNT';
+}
 
-        function forgotPassword() {
-            const username = document.getElementById('username').value.trim();
-            const message = document.getElementById('message');
+async function doLogin(username,password){
+  const hashed=hashPw(password);
+  // Try DB first, fallback to cache
+  let users=_users;
+  if(_dbReady){try{users=await dbLoad();_users=users;localStorage.setItem(LOCAL_CACHE,JSON.stringify(users));}catch{}}
+  const user=users.find(u=>u.username===username);
+  if(!user){showMsg('Username not found.');return;}
+  if(user.banned){showMsg('This account has been suspended.');return;}
+  if(user.password!==hashed){showMsg('Incorrect password.');return;}
+  // Update last login
+  user.lastLogin=Date.now();
+  if(_dbReady){try{await dbSave(users);}catch{}}
+  // Store session (24h)
+  localStorage.setItem('anicade_session',JSON.stringify({username,displayName:user.displayName||username,expires:Date.now()+86400000}));
+  document.getElementById('successMessage').textContent='Login successful! Redirecting…';
+  setTimeout(()=>{window.location.href=getRedirect();},1200);
+}
 
-            if (!username) { message.textContent = 'Please enter your username'; return; }
+async function doSignup(username,password){
+  const email=document.getElementById('emailInput').value.trim().toLowerCase();
+  const confirm=document.getElementById('confirmPassword').value;
+  if(!email){showMsg('Please enter your email.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showMsg('Please enter a valid email.');return;}
+  if(password!==confirm){showMsg('Passwords do not match.');return;}
+  if(password.length<6){showMsg('Password must be at least 6 characters.');return;}
+  if(username.length<3){showMsg('Username must be at least 3 characters.');return;}
+  if(!/^[a-z0-9_]+$/.test(username)){showMsg('Username: letters, numbers and _ only.');return;}
 
-            const users = JSON.parse(localStorage.getItem('anicade_users'));
-            if (users[username]) {
-                message.style.color = 'lawngreen';
-                message.textContent = `Your password is: ${users[username]}`;
-                setTimeout(() => { message.style.color = '#ff4d4d'; message.textContent = ''; }, 5000);
-            } else {
-                message.textContent = 'Username not found';
-            }
-        }
+  let users=_users;
+  if(_dbReady){try{users=await dbLoad();_users=users;}catch{}}
+  if(users.find(u=>u.username===username)){showMsg('Username already taken.');return;}
+  if(users.find(u=>u.email===email)){showMsg('Email already registered.');return;}
 
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') handleAuth();
-        });
-    </script>
+  const newUser={
+    username,email,
+    password:hashPw(password),
+    displayName:username,
+    joined:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}),
+    joinedTs:Date.now(),
+    lastLogin:Date.now(),
+    banned:false
+  };
+  users.push(newUser);
+
+  if(_dbReady){
+    try{
+      await dbSave(users);
+      _users=users;localStorage.setItem(LOCAL_CACHE,JSON.stringify(users));
+    }catch(e){
+      showMsg('Failed to save account. Check your connection.');return;
+    }
+  }else{
+    localStorage.setItem(LOCAL_CACHE,JSON.stringify(users));
+    _users=users;
+  }
+
+  localStorage.setItem('anicade_session',JSON.stringify({username,displayName:username,expires:Date.now()+86400000}));
+  document.getElementById('successMessage').textContent='Account created! Redirecting…';
+  setTimeout(()=>{window.location.href=getRedirect();},1200);
+}
+
+function handleForgot(){
+  const username=document.getElementById('username').value.trim().toLowerCase();
+  if(!username){showMsg('Enter your username first, then tap Forgot Password.','info');return;}
+  const user=_users.find(u=>u.username===username);
+  if(!user){showMsg('Username not found.');return;}
+  showMsg(`Email on record: ${user.email||'—'}. Contact support to reset your password.`,'info');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Enter')handleAuth();});
+</script>
 </body>
 </html>
