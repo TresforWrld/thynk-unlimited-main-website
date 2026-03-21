@@ -86,49 +86,6 @@ body{display:flex;justify-content:center;align-items:center;font-family:'Rajdhan
 .or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--border)}
 .or-divider span{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2px;color:var(--muted);white-space:nowrap}
 
-/* ── APP INSTALL OVERLAY ── */
-#install-overlay{
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(5,12,22,0.94);
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
-}
-#install-overlay.show{opacity:1;pointer-events:all}
-.iov-box{
-  background:rgba(11,28,45,0.99);
-  border:1px solid rgba(198,168,92,0.22);
-  border-radius:18px;padding:28px 22px 22px;
-  max-width:292px;width:100%;text-align:center;
-  transform:translateY(18px);
-  transition:transform .3s ease;
-}
-#install-overlay.show .iov-box{transform:translateY(0)}
-.iov-logo{width:66px;height:66px;border-radius:50%;border:2px solid rgba(198,168,92,0.35);margin:0 auto 14px;display:block}
-.iov-a{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:var(--gold);letter-spacing:2px;margin-bottom:2px}
-.iov-sub{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:3px;color:var(--cyan);opacity:.7;text-transform:uppercase;margin-bottom:16px}
-.iov-desc{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:22px}
-.iov-desc strong{color:var(--text);display:block;margin-bottom:4px;font-size:14px}
-.iov-pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-.iov-pill{background:rgba(0,191,255,0.06);border:1px solid rgba(0,191,255,0.12);border-radius:20px;padding:4px 10px;font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
-.iov-install{
-  width:100%;background:linear-gradient(135deg,var(--cyan),#0077aa);
-  color:#0B1C2D;border:none;padding:13px;border-radius:40px;
-  font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;
-  letter-spacing:1.5px;cursor:pointer;margin-bottom:10px;
-  box-shadow:0 0 24px rgba(0,191,255,0.25);
-  transition:opacity .2s;
-}
-.iov-install:hover{opacity:.88}
-.iov-skip{
-  width:100%;background:none;
-  border:1px solid rgba(255,255,255,0.07);
-  color:rgba(148,163,184,0.45);padding:10px;border-radius:40px;
-  font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;
-  cursor:pointer;letter-spacing:.5px;transition:color .2s;
-}
-.iov-skip:hover{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -175,26 +132,6 @@ body{display:flex;justify-content:center;align-items:center;font-family:'Rajdhan
         <div class="msg success" id="successMessage"></div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- APP INSTALL OVERLAY -->
-<div id="install-overlay">
-  <div class="iov-box">
-    <img class="iov-logo" src="https://i.imgur.com/RcBmjWM.png" alt="ANICADE">
-    <div class="iov-a">ANICADE</div>
-    <div class="iov-sub">Tech App &nbsp;&#183;&nbsp; TW.1.0.0</div>
-    <div class="iov-desc">
-      <strong>Install the App</strong>
-      Get faster access to all services, the Agent Portal and more — straight from your home screen.
-    </div>
-    <div class="iov-pills">
-      <span class="iov-pill">31 Services</span>
-      <span class="iov-pill">Agent Portal</span>
-      <span class="iov-pill">Works Offline</span>
-    </div>
-    <button class="iov-install" id="iov-install-btn" onclick="doInstall()">INSTALL APP</button>
-    <button class="iov-skip" onclick="skipInstall()">Maybe later &mdash; continue to site</button>
   </div>
 </div>
 
@@ -335,7 +272,8 @@ async function doLogin(username,password){
   // Store session (24h)
   localStorage.setItem('anicade_session',JSON.stringify({username,displayName:user.displayName||username,expires:Date.now()+86400000}));
   document.getElementById('successMessage').textContent='Login successful!';
-  showInstallPrompt();
+  sessionStorage.setItem('pwa_show_overlay','1');
+  setTimeout(function(){ window.location.href=getRedirect(); }, 900);
 }
 
 async function doSignup(username,password){
@@ -378,7 +316,8 @@ async function doSignup(username,password){
 
   localStorage.setItem('anicade_session',JSON.stringify({username,displayName:username,expires:Date.now()+86400000}));
   document.getElementById('successMessage').textContent='Account created!';
-  showInstallPrompt();
+  sessionStorage.setItem('pwa_show_overlay','1');
+  setTimeout(function(){ window.location.href=getRedirect(); }, 900);
 }
 
 function handleForgot(){
@@ -390,50 +329,6 @@ function handleForgot(){
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Enter')handleAuth();});
-
-/* ── APP INSTALL PROMPT ── */
-let _deferredPrompt = null;
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  _deferredPrompt = e;
-});
-
-function showInstallPrompt() {
-  // If already running as installed PWA, just redirect
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    window.location.href = getRedirect();
-    return;
-  }
-  // Show the overlay
-  const ov = document.getElementById('install-overlay');
-  ov.style.display = 'flex';
-  setTimeout(() => ov.classList.add('show'), 10);
-  // Update button text if no native prompt available (iOS / non-Chrome)
-  if (!_deferredPrompt) {
-    document.getElementById('iov-install-btn').textContent = 'OPEN IN CHROME TO INSTALL';
-  }
-}
-
-function doInstall() {
-  if (_deferredPrompt) {
-    _deferredPrompt.prompt();
-    _deferredPrompt.userChoice.then(choice => {
-      _deferredPrompt = null;
-      // Redirect regardless of choice
-      setTimeout(() => { window.location.href = getRedirect(); }, 600);
-    });
-  } else {
-    // No native prompt — just redirect
-    skipInstall();
-  }
-}
-
-function skipInstall() {
-  const ov = document.getElementById('install-overlay');
-  ov.classList.remove('show');
-  setTimeout(() => { window.location.href = getRedirect(); }, 300);
-}
 </script>
 </body>
 </html>
