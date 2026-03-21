@@ -148,7 +148,7 @@ body{display:flex;justify-content:center;align-items:center;font-family:'Rajdhan
    DB: JSONBin (users bin)
    ══════════════════════════════════════════ */
 
-const USERS_BIN_ID = 'PASTE_YOUR_NEW_BIN_ID_HERE';
+const USERS_BIN_ID = '69b14c5bc3097a1dd5173665';
 const API_KEY      = '$2a$10$VJXQzwtVgNhMTIJiiQvpy.hG7XaRD0.H42NyZhKzeLRungeekMmpO';
 const USERS_URL    = `https://api.jsonbin.io/v3/b/${USERS_BIN_ID}`;
 const REDIRECT_URL = 'https://tresforwrld.github.io/ANICADEtech.net-in/#';
@@ -270,13 +270,8 @@ async function doLogin(username,password){
   if(_dbReady){try{await dbSave(users);}catch{}}
   // Store session (24h)
   localStorage.setItem('anicade_session',JSON.stringify({username,displayName:user.displayName||username,expires:Date.now()+86400000}));
-  document.getElementById('successMessage').textContent='Login successful!';
-  // Show app install prompt if PWA not already installed
-  if(!window.matchMedia('(display-mode: standalone)').matches && !localStorage.getItem('anicade_ib_dismissed')){
-    showAppInstallPrompt(getRedirect());
-  } else {
-    setTimeout(()=>{window.location.href=getRedirect();},1200);
-  }
+  document.getElementById('successMessage').textContent='Login successful! Redirecting…';
+  setTimeout(()=>{window.location.href=getRedirect();},1200);
 }
 
 async function doSignup(username,password){
@@ -318,12 +313,8 @@ async function doSignup(username,password){
   }
 
   localStorage.setItem('anicade_session',JSON.stringify({username,displayName:username,expires:Date.now()+86400000}));
-  document.getElementById('successMessage').textContent='Account created!';
-  if(!window.matchMedia('(display-mode: standalone)').matches && !localStorage.getItem('anicade_ib_dismissed')){
-    showAppInstallPrompt(getRedirect());
-  } else {
-    setTimeout(()=>{window.location.href=getRedirect();},1200);
-  }
+  document.getElementById('successMessage').textContent='Account created! Redirecting…';
+  setTimeout(()=>{window.location.href=getRedirect();},1200);
 }
 
 function handleForgot(){
@@ -334,57 +325,7 @@ function handleForgot(){
   showMsg(`Email on record: ${user.email||'—'}. Contact support to reset your password.`,'info');
 }
 
-
-<style>
-#app-install-overlay{position:fixed;inset:0;z-index:9999;background:rgba(7,15,26,0.92);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
-#app-install-overlay.show{opacity:1}
-.ai-box{background:rgba(13,28,46,0.98);border:1px solid rgba(198,168,92,0.2);border-radius:16px;padding:28px 22px;max-width:300px;width:100%;text-align:center;transform:translateY(16px);transition:transform .3s}
-#app-install-overlay.show .ai-box{transform:translateY(0)}
-.ai-logo{width:68px;height:68px;border-radius:50%;border:2px solid rgba(198,168,92,0.3);margin:0 auto 14px;display:block}
-.ai-title{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:var(--gold);letter-spacing:1px;margin-bottom:4px}
-.ai-sub{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;color:var(--accent);opacity:.7;text-transform:uppercase;margin-bottom:14px}
-.ai-desc{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:20px}
-.ai-desc strong{color:var(--text)}
-.ai-install{width:100%;background:linear-gradient(135deg,var(--accent),#0080aa);color:#fff;border:none;padding:13px;border-radius:10px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;cursor:pointer;margin-bottom:8px}
-.ai-skip{width:100%;background:none;border:1px solid rgba(255,255,255,0.07);color:rgba(148,163,184,0.5);padding:10px;border-radius:10px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.5px}
-</style>
-
-<div id="app-install-overlay">
-  <div class="ai-box">
-    <img class="ai-logo" src="https://i.imgur.com/RcBmjWM.png" alt="ANICADE">
-    <div class="ai-title">ANICADE TECH</div>
-    <div class="ai-sub">Install App</div>
-    <div class="ai-desc">Add the <strong>ANICADE TECH</strong> app to your home screen for faster access to all 31 services, the Agent Portal and more.</div>
-    <button class="ai-install" id="ai-install-btn" onclick="doInstall()">INSTALL NOW</button>
-    <button class="ai-skip" onclick="skipInstall()">Maybe later</button>
-  </div>
-</div>
-
-<script>
-let _installRedirect='',_dip=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_dip=e;});
-function showAppInstallPrompt(redirect){
-  _installRedirect=redirect;
-  const ov=document.getElementById('app-install-overlay');
-  ov.style.display='flex';
-  setTimeout(()=>ov.classList.add('show'),10);
-  // if no native prompt available, just show the overlay as info and redirect on skip
-  if(!_dip) document.getElementById('ai-install-btn').textContent='OPEN IN CHROME TO INSTALL';
-}
-function doInstall(){
-  localStorage.setItem('anicade_ib_dismissed','1');
-  if(_dip){
-    _dip.prompt();
-    _dip.userChoice.then(()=>{setTimeout(()=>window.location.href=_installRedirect,800);});
-  } else {
-    skipInstall();
-  }
-}
-function skipInstall(){
-  const ov=document.getElementById('app-install-overlay');
-  ov.classList.remove('show');
-  setTimeout(()=>{window.location.href=_installRedirect;},300);
-}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')handleAuth();});
 </script>
 </body>
 </html>
