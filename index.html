@@ -363,7 +363,7 @@
             transition: border-color 0.25s, transform 0.25s;
         }
         .about-badge:hover { border-color: rgba(198,168,92,0.3); transform: translateX(4px); }
-        .badge-icon { font-size: 26px; flex-shrink: 0; }
+        .badge-icon { flex-shrink: 0; display: flex; align-items: center; }
         .badge-content h4 {
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
@@ -385,7 +385,7 @@
             transition: border-color 0.25s, transform 0.25s;
         }
         .pillar:hover { border-color: rgba(0,191,255,0.25); transform: translateY(-4px); }
-        .pillar-icon { font-size: 34px; margin-bottom: 14px; display: block; }
+        .pillar-icon { margin-bottom: 14px; display: flex; justify-content: center; }
         .pillar h3 {
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
@@ -495,7 +495,7 @@
         <div class="hero-inner">
             <div class="hero-logo-wrap">
                 <div class="hero-logo-ring">
-                    <img src="https://i.imgur.com/RcBmjWM.png" alt="ANICADE TECH" class="hero-logo-img">
+                    <img src="https://i.imgur.com/9mjKZAj.jpeg" alt="ANICADE TECH" class="hero-logo-img">
                 </div>
             </div>
             <div class="hero-eyebrow">Tech Beyond Limits</div>
@@ -550,28 +550,28 @@
             </div>
             <div class="about-badges">
                 <div class="about-badge">
-                    <div class="badge-icon">🌍</div>
+                    <div class="badge-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
                     <div class="badge-content">
                         <h4>Local & Trusted</h4>
                         <p>Based Locally, we understand the Zambian market and speak your language.</p>
                     </div>
                 </div>
                 <div class="about-badge">
-                    <div class="badge-icon">⚡</div>
+                    <div class="badge-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
                     <div class="badge-content">
                         <h4>Fast Delivery</h4>
                         <p>Most projects delivered within days — not weeks — via WhatsApp coordination.</p>
                     </div>
                 </div>
                 <div class="about-badge">
-                    <div class="badge-icon">💎</div>
+                    <div class="badge-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><polyline points="6 3 18 3 22 9 12 22 2 9 6 3"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="12" y2="22"/></svg></div>
                     <div class="badge-content">
                         <h4>Professional Quality</h4>
                         <p>World-class design and development standards at Zambian prices.</p>
                     </div>
                 </div>
                 <div class="about-badge">
-                    <div class="badge-icon">🤝</div>
+                    <div class="badge-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l1.06 1.06L12 21.23l7.77-7.77 1.06-1.06a5.4 5.4 0 0 0 0-7.65z"/></svg></div>
                     <div class="badge-content">
                         <h4>Agent Network</h4>
                         <p>Join our growing network of agents and earn 15% on every sale you close.</p>
@@ -583,32 +583,32 @@
         <!-- PILLARS -->
         <div class="pillars">
             <div class="pillar">
-                <span class="pillar-icon">🌐</span>
+                <span class="pillar-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
                 <h3>Web & Digital</h3>
                 <p>From simple landing pages to full e-commerce stores — we build it all.</p>
             </div>
             <div class="pillar">
-                <span class="pillar-icon">🤖</span>
+                <span class="pillar-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h1v6H9z"/><path d="M14 9h1v6h-1z"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="15" y1="1" x2="15" y2="3"/></svg></span>
                 <h3>AI & Automation</h3>
                 <p>Chatbots, workflow tools and content systems that work while you sleep.</p>
             </div>
             <div class="pillar">
-                <span class="pillar-icon">🎨</span>
+                <span class="pillar-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="8.5" cy="7.5" r=".5" fill="var(--accent)"/><circle cx="15.5" cy="7.5" r=".5" fill="var(--accent)"/><circle cx="15.5" cy="12.5" r=".5" fill="var(--accent)"/><circle cx="8.5" cy="12.5" r=".5" fill="var(--accent)"/></svg></span>
                 <h3>Design & Brand</h3>
                 <p>Logos, identity kits and visuals that make your brand unforgettable.</p>
             </div>
             <div class="pillar">
-                <span class="pillar-icon">📢</span>
+                <span class="pillar-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span>
                 <h3>Advertising</h3>
                 <p>Ad creatives, campaign management and high-converting landing pages.</p>
             </div>
             <div class="pillar">
-                <span class="pillar-icon">📲</span>
+                <span class="pillar-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="2.5"/><polyline points="8 6 12 10 16 6"/></svg></span>
                 <h3>Premium Apps</h3>
                 <p>Lifetime access to premium digital tools at prices that make sense.</p>
             </div>
             <div class="pillar">
-                <span class="pillar-icon">🧠</span>
+                <span class="pillar-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M9.5 2a2.5 2.5 0 0 1 5 0v1.5M9.5 2C6 2 3 5 3 8.5c0 2.5 1.5 4.5 3.5 5.5v2a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2c2-1 3.5-3 3.5-5.5C21 5 18 2 14.5 2"/><line x1="12" y1="8" x2="12" y2="14"/></svg></span>
                 <h3>Agent Income</h3>
                 <p>Earn 15% commission — no investment required, just your network.</p>
             </div>
@@ -628,7 +628,7 @@
     <!-- FOOTER — all links → login.html except Terms -->
     <footer class="site-footer">
         <div class="footer-logo" onclick="goLogin()">ANICADE.TECH</div>
-        <p>📍 Kabwe, Zambia &nbsp;·&nbsp; 📱 +260 777 083 995 &nbsp;·&nbsp; 📧 anicadetech@gmail.com</p>
+        <p style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kabwe, Zambia &nbsp;·&nbsp; <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="3"/></svg> +260 777 083 995 &nbsp;·&nbsp; <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <a href="mailto:anicadetech@gmail.com" style="color:var(--text-light);text-decoration:none;vertical-align:middle">anicadetech@gmail.com</a></p>
         <div class="footer-links">
             <a onclick="goLogin()">Services</a>
             <span class="sep">·</span>
